@@ -35,5 +35,6 @@ class UpcomingDuty extends StatelessWidget {
 
 void logout() async {
   var sharedpref = await SharedPreferences.getInstance();
+  await sharedpref.clear();
   sharedpref.setString(SplashScreenState.loginKey, '');
 }

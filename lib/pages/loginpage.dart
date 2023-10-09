@@ -46,12 +46,12 @@ void login(String userid, password) async {
       name: responseData["name"],
       phone: responseData["phone"]);
 
+  print(useridcnt);
+
   if (response.statusCode == 200) {
     var sharedpref = await SharedPreferences.getInstance();
     sharedpref.setString(SplashScreenState.loginKey, user.email);
     loginval = 1;
-    // print(user.email);
-    // print(user.name);
   } else {
     print(response.statusCode);
   }
@@ -71,7 +71,8 @@ class _LoginState extends State<LoginPage> {
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: NetworkImage(
-                  'https://w0.peakpx.com/wallpaper/361/61/HD-wallpaper-blue-amoled-black-s9-s9-plus-thumbnail.jpg'),
+                  'https://4kwallpapers.com/images/walls/thumbs_3t/8324.png'),
+              //'https://w0.peakpx.com/wallpaper/361/61/HD-wallpaper-blue-amoled-black-s9-s9-plus-thumbnail.jpg'),
               fit: BoxFit.cover)),
       child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -141,12 +142,20 @@ class _LoginState extends State<LoginPage> {
                                   onPressed: () {
                                     // Navigator.pushNamed(
                                     //     context, 'upcomingduty');
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return const Center(
+                                              child:
+                                                  CircularProgressIndicator());
+                                        });
                                     login(useridcnt.text.toString(),
                                         passwordcnt.text.toString());
 
                                     Future.delayed(const Duration(seconds: 2),
                                         () {
                                       if (loginval == 1) {
+                                        loginval = 0;
                                         Navigator.pushReplacement(
                                             context,
                                             MaterialPageRoute(
@@ -157,6 +166,7 @@ class _LoginState extends State<LoginPage> {
                                             "Credentials Not Correct");
                                       }
                                     });
+                                    Navigator.of(context).pop;
                                   },
                                   icon: const Icon(Icons.arrow_forward))))
                         ],
