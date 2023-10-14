@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:ibapp_2/models/dutylist.dart';
+import 'package:ibapp_2/pages/detailsone.dart';
 import 'package:ibapp_2/pages/loginpage.dart';
 import 'package:ibapp_2/pages/splashscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -147,7 +148,16 @@ class _UpcomingDutyState extends State<UpcomingDuty> {
                                                 label:
                                                     const Text('Update Duty'),
                                                 //child: const Text('Update Duty'),
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              DetailsOne(dl[
+                                                                      index]
+                                                                  .name
+                                                                  .toString())));
+                                                },
                                               )
                                             ])
                                       ],

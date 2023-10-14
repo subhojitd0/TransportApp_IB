@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ibapp_2/pages/detailsone.dart';
 import 'package:ibapp_2/pages/loginpage.dart';
 import 'package:ibapp_2/pages/splashscreen.dart';
 import 'package:ibapp_2/pages/upcomingduty.dart';
@@ -15,7 +16,8 @@ class IbApp extends StatelessWidget {
       routes: {
         'home': (context) => const SplashScreen(),
         'login': (context) => const LoginPage(),
-        'upcomingduty': (context) => const UpcomingDuty()
+        'upcomingduty': (context) => const UpcomingDuty(),
+        'detailsone': (context) => DetailsOne(String),
       },
     );
   }
