@@ -17,7 +17,7 @@ class IbApp extends StatelessWidget {
         'home': (context) => const SplashScreen(),
         'login': (context) => const LoginPage(),
         'upcomingduty': (context) => const UpcomingDuty(),
-        'detailsone': (context) => DetailsOne(String),
+        'detailsone': (context) => DetailsOne(Object),
       },
     );
   }

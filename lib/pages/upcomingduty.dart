@@ -16,6 +16,8 @@ class UpcomingDuty extends StatefulWidget {
 }
 
 class _UpcomingDutyState extends State<UpcomingDuty> {
+  bool updbutton = false;
+  bool startbtn = true;
   List<DutyList> dl = [];
   Future<List<DutyList>> getduty() async {
     var uri = Uri.parse('https://wishwings.in/api/appdutylist.php');
@@ -130,35 +132,47 @@ class _UpcomingDutyState extends State<UpcomingDuty> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
-                                              Text(
-                                                  "${dl[index].startloc}(${dl[index].starttime})"),
-                                              const Text(' - '),
-                                              Text(
-                                                  "${dl[index].endloc}(${dl[index].endtime})")
+                                              Text(dl[index].startloc),
+                                              const Text(' at '),
+                                              Text(dl[index].starttime)
                                             ],
                                           ),
                                         ),
                                         const SizedBox(height: 20),
                                         Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.end,
+                                                MainAxisAlignment.spaceEvenly,
                                             children: [
+                                              ElevatedButton.icon(
+                                                icon: const Icon(Icons.start),
+                                                label: const Text('Start Duty'),
+                                                //child: const Text('Update Duty'),
+                                                onPressed: startbtn
+                                                    ? () {
+                                                        setState(() {
+                                                          startbtn = !startbtn;
+                                                          updbutton =
+                                                              !updbutton;
+                                                        });
+                                                      }
+                                                    : null,
+                                              ),
                                               ElevatedButton.icon(
                                                 icon: const Icon(Icons.update),
                                                 label:
                                                     const Text('Update Duty'),
                                                 //child: const Text('Update Duty'),
-                                                onPressed: () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              DetailsOne(dl[
-                                                                      index]
-                                                                  .name
-                                                                  .toString())));
-                                                },
-                                              )
+                                                onPressed: updbutton
+                                                    ? () {
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder: (context) =>
+                                                                    DetailsOne(dl[
+                                                                        index])));
+                                                      }
+                                                    : null,
+                                              ),
                                             ])
                                       ],
                                     )));

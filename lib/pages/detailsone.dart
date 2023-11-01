@@ -6,9 +6,21 @@ import 'package:ibapp_2/pages/splashscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DetailsOne extends StatelessWidget {
-  var i = '';
+  var id = 0;
+  var name = '';
+  var phone = '';
+  var startloc = '';
+  var starttime = '';
+  var endloc = '';
+  var endtime = '';
   DetailsOne(v, {super.key}) {
-    i = v;
+    id = v.id;
+    phone = v.phone;
+    name = v.name;
+    startloc = v.startloc;
+    starttime = v.starttime;
+    endloc = v.endloc;
+    endtime = v.endtime;
   }
 
   @override
@@ -27,7 +39,7 @@ class DetailsOne extends StatelessWidget {
           ),
           actions: <Widget>[
             Padding(
-                padding: EdgeInsets.only(right: 20.0),
+                padding: const EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
                   onTap: () {
                     logout();
@@ -45,7 +57,7 @@ class DetailsOne extends StatelessWidget {
                 )),
           ]),
       body: Column(
-        children: [Text(i)],
+        children: [Text(name)],
       ),
     );
   }
